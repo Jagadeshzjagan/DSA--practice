@@ -1,0 +1,37 @@
+//DSA-leetcode 
+
+4.problem- set mismatch 
+
+Example 1:
+Input: nums = [1,2,2,4]
+Output: [2,3]
+
+
+class Solution {
+public:
+    vector<int> findErrorNums(vector<int>& nums) { 
+        int duplicate=-1 ;
+        int missing=-1;
+        for (int i=0;i<nums.size();i++){
+            for (int j=i+1;j<nums.size();j++){
+                if (nums[i]==nums[j]){
+                    duplicate=nums[i];
+                } 
+            } 
+        }        
+         for (int i=1;i<=nums.size();i++){
+             bool found=false;
+              for (int j=0;j<nums.size();j++){
+                if (nums[j]==i){
+                found=true;
+                break; 
+              }
+            }  
+            if (!found){
+                missing=i;
+            }   
+         } 
+          return{duplicate,missing};  
+         }
+       
+};
