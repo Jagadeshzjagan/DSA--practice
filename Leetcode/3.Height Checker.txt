@@ -1,0 +1,38 @@
+//leetcode 
+
+//3.Height Checker
+
+//Input: heights = [1,1,4,2,1,3]
+Output: 3
+Explanation: 
+heights:  [1,1,4,2,1,3]
+expected: [1,1,1,2,3,4]
+Indices 2, 4, and 5 do not match. 
+
+//solution 
+class Solution {
+public:
+    int heightChecker(vector<int>& heights) {
+        vector <int>expected=heights;
+        int n=expected.size();
+        for (int i=0; i<n-1;i++){
+            int min=i;
+            for (int j=i+1; j<n;j++ ){
+                if (expected[j]<expected[min]){
+                    min=j;
+                }
+            }
+            int temp=expected[min];
+            expected[min]=expected[i];
+            expected[i]=temp;
+        }
+        int c=0;
+        for (int i=0;i<n; i++){
+            if(heights[i]!=expected[i]){
+                c++;
+                
+            }
+        } 
+        return c;
+    }
+};
